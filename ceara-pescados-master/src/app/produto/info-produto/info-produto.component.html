@@ -1,0 +1,76 @@
+<section>
+
+    <div class="loading-indicator" *ngIf="carregarCarrinho">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-12 titulo">
+                <p class="">{{produto?.nome}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-8">
+                <div class="produto-imagem-container d-flex justify-content-center">
+                    <p-galleria [images]="images" panelWidth="500" panelHeight="360" [showCaption]="false" [autoPlay]="false"></p-galleria>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4">
+                    <div class="card text-center card-preco">
+
+                        <div class="card-header titulo-card">
+                            <div>
+                                <label >Quantidade:&nbsp;</label>
+                                <button type="button" (click)="menosPeso(qtdMinima)" class="btn botao-mais-menos">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="text" class='product-quantity' [value]="item?.quantidade | maskPeso" size="7" readonly="true" style="text-align:center;">
+                                <button type="button" (click)="maisPeso(qtdMinima)" class="btn botao-mais-menos">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="card-body">
+                            <h5 class="card-title">Preço total</h5>
+                            <h2 class="card-text preco">{{preco | currency: 'BRL': true}}</h2>
+                            <button type="button" class="btn botao-cor-especial" (click)="adicionarItemNoCarrinho()"><i class="fas fa-plus botao-img"></i>&nbsp;<i class="fas fa-shopping-cart botao-img"></i></button>
+                        </div>
+                        
+                        <div class="card-footer text-muted">
+                            <p>Preço/kg: {{produto?.preco | currency: 'BRL': true}}</p>
+                            Quantidade mínima: {{produto?.quantidadeMinimaVenda}}kg
+                        </div>
+                    
+                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12">
+                <div class="descricao m-4">
+                    <h3 class="fonte-titulo-descricao">Descrição do Produto</h3>
+                    <p class="text-justify">{{produto?.descricao}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<p-dialog [dismissableMask]="true" [closable]="true"
+[(visible)]="displayDialogAddCarrinho" [responsive]="true" [modal]="true">
+    <p-header>
+        <div class="dialog-add-carrinho-header"><i class="far fa-check-circle"></i>&nbsp;Produto adicionado no carrinho com sucesso</div>
+    </p-header>
+        <div class="ui-grid ui-grid-responsive ui-fluid">
+            <p class=""><b>{{item?.produto.nome}} - {{item?.quantidade}} kg</b></p>        
+        </div>
+    <p-footer>
+        <div class="d-flex justify-content-start">
+            <p class="footer-msg">Clique no carrinho para finalizar a compra ou<br>clique <a routerLink="/">aqui</a> para continuar comprando.</p>
+        </div>
+    </p-footer>
+            
+</p-dialog>
+

@@ -1,0 +1,178 @@
+<header *ngIf="exibirHeader">
+
+    <!--Visível em telas maiores que xs-->
+    <div class="container-fluid p-0 d-none d-sm-none d-md-none d-lg-block">
+      <div class="row no-gutters ">
+  
+        <!--Logo-->
+        <div class="col-sm-2 logo">
+          <div class="d-flex flex-column justify-content-center">
+            <a routerLink="/"> 
+              <img class="logo-largura" alt="Ponto do Camarão Logo" src="../assets/img/logos/logo_ceara_pescados.png"> 
+            </a>
+          </div>
+        </div>
+  
+        <!--Barra de busca + menu-->
+        <div class="col-sm-7 menu-principal pt-4 pl-2 pr-2 pb-0">
+          <div class="d-flex flex-column justify-content-start">
+  
+            <!--Barra de busca-->
+            <form [formGroup]="buscaForm" class="input-group mb-3">
+                <input class="form-control" formControlName="buscaControl" type="text" (keyup.enter)="search($event.target.value)" placeholder="O que você está procurando?" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary botao-cor" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+  
+            <!--Menu-->
+            <nav class="p-0 m-0 navbar navbar-expand-lg cor-menu menu-fonte ">         
+                <button class="navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed" 
+                        [attr.aria-expanded]="!navbarCollapsed" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation"> 
+                  <span><i class="fas fa-bars"></i></span> 
+                </button> 
+              <div class="d-flex flex-column">
+                <div class="navbar-collapse " [ngbCollapse]="navbarCollapsed" id="navbarContent"> 
+                  <ul class="navbar-nav mr-auto "> 
+                    <li class="nav-item" > 
+                      <a class="nav-link pl-0 menu"  (click)="navbarCollapsed = true" routerLink="departamentos">Departamentos</a> 
+                    </li> 
+                    <li class="nav-item" > 
+                      <a class="nav-link menu"  (click)="navbarCollapsed = true" [routerLink]="['/produto-secao', 'Camarão']">Camarão</a> 
+                    </li> 
+                    <li class="nav-item" > 
+                      <a class="nav-link menu"  (click)="navbarCollapsed = true" [routerLink]="['/produto-secao', 'Peixe']">Peixe</a> 
+                    </li>
+                    <li class="nav-item" > 
+                      <a class="nav-link menu"  (click)="navbarCollapsed = true" [routerLink]="['/produto-secao', 'Mariscos']">Mariscos</a> 
+                    </li>
+                    <li class="nav-item" > 
+                      <a class="nav-link menu"  (click)="navbarCollapsed = true" [routerLink]="['/produto-secao', 'Promoções']">Promoções</a> 
+                    </li>
+                  </ul>                       
+                </div> 
+              </div>
+            </nav>
+          </div>
+  
+        </div>
+  
+      <!--Botão de usuário, carrinho e telefone-->
+      <div class="col-sm-2 contato pt-2 pl-2 pr-2 pb-0">
+        <div class="d-flex justify-content-end">
+        <div class="d-flex flex-column">
+  
+          <div class="d-flex flex-row bd-highlight mb-2">
+  
+            <!------------ Botão de login ------------------------->
+            <div *ngIf="clienteLogado; else logar">
+              
+              <!--
+              <button pButton pRipple type="button"  label="{{nomeCliente}}" class="p-button-text" (click)="menu.toggle($event)"></button>
+              <p-menu #menu [popup]="true" [model]="itensMenuUsuario" appendTo="body"></p-menu>
+            -->
+              
+              <div class="dropdown">
+                <button class="btn btn-link dropdown-toggle user-btn style='text-decoration:none;'" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  
+                  <span style='font-size: large; font-weight: 400; color: black;'>Olá, {{nomeCliente}}</span>
+                  
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" routerLink="cliente/dados" >Minha conta</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" routerLink="cliente/endereco">Meus endereços</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" [routerLink]="['/cliente/pedidos']">Meus pedidos</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" routerLink="painel" (click)="logout()">Sair</a>
+                </div>
+              </div>
+  
+            </div>
+            <ng-template #logar>
+              <div class="d-flex flex-row">
+                <div class="d-flex align-items-center">
+                  <i class="far fa-user-circle fa-2x icone-entrar"></i>
+                </div>
+                <button type="button" class="btn btn-link botoes-entrar pl-2" [routerLink]="['/login']" [queryParams]="{encaminharPag: 'n'}"> Entre ou<br>cadastre-se</button>
+              </div>
+            </ng-template>
+            
+            <!------------ Botão de carrinho ------------------------->
+            <div class="d-flex align-items-center">
+              <button #carrinhoBtn (click)="verCarrinho()" type="button" [popover]="myPopover" [popoverOnHover]="false" [popoverDismissTimeout]="2000" [popoverDisabled]="false" class="btn botao-cor"><i class="fas fa-shopping-cart botao-img" ></i> {{(itens)?.length}}</button>
+              <popover-content #myPopover 
+                  placement="bottom"
+                  [animation]="true" 
+                  [closeOnClickOutside]="false" >
+                  <p class="msg-popover"> Carrinho</p>
+                  <p><b>Seu carrinho está vazio!</b></p>
+              </popover-content>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+  
+          <div class="d-flex flex-row">
+  
+            <div class="d-flex align-items-center"><i class="fas fa-phone-alt fa-2x mr-2 telefone-cor"></i></div>
+  
+            <div class="d-flex flex-column">
+              <p class="cor-menu telefone-fonte m-0 p-0"> Peça pelo telefone!</p>      
+              <p class="telefone-cor telefone-numero m-0 p-0">(xx)xxx-xxxx</p>
+            </div>
+          </div>
+  
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    </div>
+  </div>
+  
+    <!--Visível apenas em telas xs-->
+    <div class="d-block d-sm-block d-md-block d-lg-none">
+        <div class="d-flex flex-row menu-mobile">
+  
+            <nav class="navbar navbar-expand-lg navbar-dark cor-menu">
+                <button class="navbar-toggler menu-mobile-cor" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <form [formGroup]="buscaForm" class="input-group mb-3 mt-3 mr-3">
+                        <div class="busca-barra-mobile">
+                            <button class="btn btn-outline-secondary menu-barra-mobile-cor" type="button" id="button-addon1"><i class="fas fa-search"></i></button>
+                        </div>
+                        <input type="text" class="form-control " formControlName="buscaControl" type="text" placeholder="Buscar" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    </form>
+                </a>
+              
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                      <a class="nav-link menu-mobile-cor" routerLink="departamentos" >Departamentos <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link menu-mobile-cor" href="#">Camarão Salgado</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link menu-mobile-cor" href="#">Camarão 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-mobile-cor" href="#">Mariscos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-mobile-cor" href="#">Promoções</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+  
+            
+  
+          </div>
+    </div>
+  
+  </header>
+  

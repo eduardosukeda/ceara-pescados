@@ -1,0 +1,47 @@
+.footer-main {
+    background-color: #22437d;
+}
+
+.brasao-imagem {
+    max-height: 170px;
+    max-width: 150px;
+}
+
+.footer-cor {
+    color: white!important;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.footer-versao {
+    color: white!important;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.pagamento {
+    max-width: 200px;
+}
+
+.footer-redes-img {
+    color: ivory;
+    margin: 0 5px;
+}
+
+/*********** Classes mobile ****************/
+
+.footer-mobile {
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+}
+
+.brasao-imagem-mobile {
+    max-height: 100px;
+    max-width: 80px;
+}
+
+.footer-mobile-redes-img {
+    color: ivory;
+    margin: 0;
+}

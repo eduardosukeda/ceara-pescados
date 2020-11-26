@@ -1,0 +1,88 @@
+<section class="container-fluid bg-light">
+    
+    <div class="row">
+        <div class="col-sm-12 titulo">
+            <div class="d-flex justify-content-around">
+                <a routerLink="/"> 
+                  <img class="logo-largura" alt="Ceará Pescados" src="../assets/img/logos/logo_footer.png"> 
+                </a>
+                <p-steps [model]="passos" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
+              </div>
+        </div>
+    </div>
+    
+
+    <!--Visível em telas maiores que xs-->
+    <div class="row">
+      
+      <div class="col-sm-7">
+            
+        <p-accordion [activeIndex]="index" (onOpen)="onTabOpen($event)">
+            <p-accordionTab header="Dados Pessoais">
+              <div *ngIf="usuarioLogado | async as usuarioLogado">
+                <p>{{usuarioLogado.usuario.nome}}</p>
+                <p>{{usuarioLogado.usuario.email}}</p>
+                <p>Endereço: Rua {{usuarioLogado.endereco?.rua}}, {{usuarioLogado.endereco?.numero}}</p>
+                <p>{{usuarioLogado.endereco?.bairro}}, {{usuarioLogado.endereco?.cidade}}-{{usuarioLogado.endereco?.estado}}</p>
+                <p>CEP: {{usuarioLogado.endereco?.cep}}</p>
+                <p>{{usuarioLogado.endereco?.complemento}}</p>
+              </div>
+
+              <br />
+
+              <div class="alinhamento-botoes">
+                <button pButton type="button" label="Ir para a entrega" class="ui-button-raised" (click)="openTab(1)"></button>
+                <button pButton type="button" label="Editar dados pessoais" class="ui-button-secondary ml-5" ></button>
+              </div>
+
+            </p-accordionTab>
+            <p-accordionTab header="Dados da entrega">
+                <div *ngIf="!(usuarioLogado | async)?.endereco">
+                  <p>Você ainda não tem um endereço de entrega cadastrado.</p>
+                  <button pButton type="button" label="Cadastrar endereço de entrega" class="ui-button-raised mt-3" (click)="openTab(2)"></button>
+                </div>
+                <div *ngIf="(usuarioLogado | async)?.endereco">
+
+                  <button pButton type="button" label="Ir para o pagamento" class="ui-button-raised" (click)="openTab(2)"></button>
+                </div>
+            </p-accordionTab>
+            <p-accordionTab header="Pagamento">
+                <app-checkout></app-checkout>
+                <button pButton type="button" label="Finalizar" class="ui-button-raised"></button>
+            </p-accordionTab>
+        </p-accordion>
+
+      </div>
+      <div class="col-sm-4">
+        
+        <div class="card card-dimensoes">
+          <div class="card-body">
+            <h5 class="card-title">Resumo do pedido</h5>
+
+            <div *ngFor="let item of itens" class="mb-3">
+              <div class="d-flex flex-row align-items-center">
+                <img src="data:image/jpg;base64,{{ item.produto.imagens[0].imagem }}" class="img-fluid img-resumo">
+                <div class="d-flex flex-column">
+                  <p class="resumo">{{item.produto.nome}}</p>
+                  <p class="resumo">Quantidade:  - Tamanho: </p>
+                  <p class="resumo">Valor: {{item.produto.preco | currency: 'BRL': true}}</p>
+                </div>
+              </div>
+              <hr width = “2” size = “100”>             
+            </div>
+
+            <div class="d-flex flex-row justify-content-between">
+              <a href="#" class="btn btn-carrinho">Continuar comprando</a>
+              <p>Total: {{valorTotal() | currency: 'BRL': true}}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-1">
+        
+      </div>
+    </div>
+
+    
+</section>

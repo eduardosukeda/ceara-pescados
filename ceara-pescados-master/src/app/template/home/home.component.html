@@ -1,0 +1,47 @@
+<main>
+    <div class="pt-4 bg-light">
+  
+      <!--CARROSEL DE IMAGENS PRINCIPAIS-->
+  
+      <!---->
+      <p-carousel [value]="images" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+        <ng-template let-image pTemplate="item">
+            
+            <img [src]="image" class="d-block w-100 carousel-img"/>
+                    
+        </ng-template>
+    </p-carousel>
+  
+  
+    <div >
+        <!--SEÇÃO PROMOÇÕES-->
+        <div class="lista-produtos">
+    
+          <div class="lista-produtos-header">
+            <hr class="lista-linha-pequena">
+            <h3 class="fonte-estilo"><a class="scroller-link" href="/">PROMOÇÕES</a></h3>
+            <hr class="lista-linha-media">
+          </div>  
+    
+          <app-lista-produtos [produtos]="produtos"></app-lista-produtos>        
+        </div>        
+        
+        <!--SEÇÃO MAIS VENDIDOS-->
+        <div class="lista-produtos">
+
+          <div class="lista-produtos-header">
+            <hr class="lista-linha-pequena">
+            <h3 class="fonte-estilo"><a class="scroller-link" href="/">MAIS VENDIDOS</a></h3>
+            <hr class="lista-linha-media">
+          </div>
+
+          <app-lista-produtos [produtos]="produtos"></app-lista-produtos>    
+        </div>
+    </div>
+      
+  
+    </div>
+  </main>
+  
+  
+  

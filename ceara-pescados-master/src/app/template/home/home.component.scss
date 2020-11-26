@@ -1,0 +1,88 @@
+.carousel-img {
+    object-fit: cover;
+    max-height: 400px;
+  }
+  
+  .fonte-estilo {
+    /*font-family: 'Pacifico', cursive;*/
+    font-family: 'Calistoga', cursive;
+    letter-spacing: 2px;
+  }
+  
+  
+  
+  
+  .lista-produtos {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+  }
+  
+  .lista-produtos-header {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .lista-produtos-header>h3 {
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    display: inline;
+    white-space: nowrap;
+    margin: 0 15px;
+  }
+  
+  .lista-produtos-header>h3>a {
+    color: #000;
+  }
+  
+  .lista-linha-pequena {
+      border-color: rgb(180, 69, 0);
+      border-width: 3px;
+      width: 150px;
+  }
+  
+  .lista-linha-cheia, .lista-linha-media {
+      border-color: rgb(180, 69, 0);
+      border-width: 3px;
+      width: 100%;
+  }
+  
+  .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-details > .p-grid {
+    border: 1px solid #b3c2ca;
+    border-radius: 3px;
+    margin: 0.3em;
+    text-align: center;
+    padding: 2em 0 2.25em 0;
+  }
+  .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-title {
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 24px;
+  }
+  .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-subtitle {
+    margin: 0.25em 0 2em 0;
+  }
+  .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data button {
+    margin-left: 0.5em;
+  }
+  .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data button:first-child {
+    margin-left: 0;
+  }
+  .carousel-demo .ui-carousel.custom-carousel .ui-carousel-dot-icon {
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50%;
+  }
+  .carousel-demo .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-start .car-details > .p-grid {
+    margin-left: 0.6em;
+  }
+  .carousel-demo .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-end .car-details > .p-grid {
+    margin-right: 0.6em;
+  }
+  
+  

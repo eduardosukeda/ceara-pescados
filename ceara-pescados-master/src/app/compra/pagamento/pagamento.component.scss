@@ -1,0 +1,64 @@
+.cabecalho {
+    background-color: rgb(180, 69, 0);
+  }
+
+  .titulo {
+    background-color: rgb(134, 56, 7);
+    color: white;
+    font-family: 'Open Sans,sans-serif';
+    letter-spacing: 2px;
+    border-bottom: 2px solid white;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+
+  .titulo h2 {
+    font-weight: 700;
+  }
+
+  .titulo p {
+    font-weight: 400;
+    font-size: x-large;
+    margin: 8px;
+  }
+
+
+  .logo-largura {
+    max-width: 230px;
+    max-height: 110px;
+    padding: 8px 0 8px 0;
+  }
+
+ .card-dimensoes {
+   width: 100%;
+ }
+
+ .img-resumo {
+  height: auto;
+  margin-top: 0;
+  margin-right: 10px;
+  margin-bottom: 0;
+  margin-left: 0;
+  max-height: 50px;
+  max-width: 50px;
+  width: auto;
+  
+ }
+
+ .resumo {
+   padding: 0;
+   margin: 0;
+   font-size: small;
+ }
+
+ .btn-carrinho {
+   background-color: rgb(180, 69, 0);
+   color: white;
+ }
+
+ .alinhamento-botoes {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  margin: 8px 8px 0 8px;
+}

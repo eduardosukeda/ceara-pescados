@@ -1,0 +1,259 @@
+<section>
+    <div class="container-fluid">                     
+        <form [formGroup]="form">
+            <div class="d-flex flex-row m-3">
+                <div class="d-flex flex-column mr-4">
+                    <label for="cpf" class="subtitulo mb-1">CPF*:</label>
+                    <input type="text" pInputText formControlName="cpf" size="14" class="form-control form-control-lg"/>
+                    <div *ngIf="cpf.touched && cpf.errors" class="text-warning">
+                        <p *ngIf="cpf.errors.required">
+                            CPF é obrigatório.
+                        </p>
+                        <p *ngIf="cpf.errors.cpfInvalido">
+                            Digite um CPF válido
+                        </p>
+                    </div>
+                </div>           
+            </div> 
+
+            <div class="d-flex flex-row mt-0 ml-3 mr-3 mb-3"> 
+                <div class="d-flex flex-column mr-4">                        
+                    <label for="ocorrencia" class="subtitulo mb-1">Nome*:</label>                       
+                    <input type="text" pInputText formControlName="nome" size="15" class="form-control form-control-lg"/>
+                    <div *ngIf="nome.touched && nome.errors" class="text-warning">
+                        <p *ngIf="nome.errors.required">
+                            Nome é obrigatório.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column mr-4">                        
+                    <label for="sobrenome" class="subtitulo mb-1">Sobrenome*:</label>
+                    <input type="text" pInputText formControlName="sobrenome" size="30" class="form-control form-control-lg"/>                        
+                    <div *ngIf="sobrenome.touched && sobrenome.errors" class="text-warning">
+                        <p *ngIf="sobrenome.errors.required">
+                            Sobrenome é obrigatório.
+                        </p>
+                    </div>
+                </div>
+            </div>              
+
+            <div class="d-flex flex-row m-3">
+                <div class="d-flex flex-column mr-4">
+                    <label for="telefone" class="subtitulo mb-1">Telefone:</label>
+                    <input type="text" pInputText formControlName="telefone" size="15" class="form-control form-control-lg"/>
+                </div>
+            </div>                
+
+            <div class="form-row m-3">
+                <div class="d-flex flex-column mr-4">
+                    <label for="email" class="subtitulo mb-1">E-mail*:</label>
+                    <input type="text" pInputText formControlName="email" size="30" class="form-control form-control-lg"/>
+                    <div *ngIf="email.touched && email.errors" class="text-warning">
+                        <p *ngIf="email.errors.required">
+                            E-mail é obrigatória.
+                        </p>
+                        <p *ngIf="email.errors.email">
+                            Digite um e-mail válido.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row m-3">
+                <div class="d-flex flex-column mr-4">
+                    <label for="senha" class="subtitulo mb-1">Senha:</label>
+                    <input type="password" pInputText formControlName="senha" size="12" class="form-control form-control-lg"/>
+                    <div *ngIf="senha.touched && senha.errors" class="text-warning">
+                        <p *ngIf="senha.errors.required">
+                            Senha é obrigatória.
+                        </p>
+                        <p *ngIf="senha.errors.minlength">
+                            Senha deve ter no mínimo 6 caracters.
+                        </p>
+                        <p *ngIf="senha.errors.maxlength">
+                            Senha deve ter no máximo 12 caracters.
+                        </p>
+                    </div>
+                </div>           
+
+                <div class="d-flex flex-column mr-4 mb-3">
+                    <label for="confirmarSenha" class="subtitulo mb-1">Confirmar senha:</label>
+                    <input type="password" pInputText formControlName="confirmarSenha" size="12" class="form-control form-control-lg"/>
+                    <div *ngIf="confirmarSenha.touched && confirmarSenha.errors" class="text-warning">
+                        <p *ngIf="confirmarSenha.errors.required">
+                            Confirme sua senha.
+                        </p>
+                        <p *ngIf="confirmarSenha.errors.senhasNaoCoincidem">
+                            As senhas não coincidem.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <h5 class="subtitulo mt-5 ml-3 mb-0">Endereço</h5>                   
+            <hr class="mt-1 ml-3 mb-4">
+
+            <div formGroupName="endereco" novalidate>
+                <div class="d-flex flex-row mt-0 ml-3 mr-3 mb-3"> 
+                    <div class="d-flex flex-column mr-4">                        
+                        <label for="cep" class="subtitulo">CEP*</label>                       
+                        <input type="text" pInputText formControlName="cep" size="10" (blur)="consultaCep()" class="form-control form-control-lg"/>
+                        <div *ngIf="cep.touched && cep.errors" class="text-warning">
+                            <p *ngIf="cep.errors.required">
+                                CEP é obrigatório.
+                            </p>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="d-flex flex-row m-3">
+                    <div class="d-flex flex-column mr-4">
+                        <label for="rua" class="subtitulo">Rua*</label>                       
+                        <input type="text" pInputText formControlName="rua" size="30" class="form-control form-control-lg"/>
+                        <div *ngIf="rua.touched && rua.errors" class="text-warning">
+                            <p *ngIf="rua.errors.required">
+                                Rua é obrigatório.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column mr-4">
+                        <label for="numero" class="subtitulo">Número*</label>                       
+                        <input type="text" pInputText formControlName="numero" size="4" class="form-control form-control-lg"/>
+                        <div *ngIf="numero.touched && numero.errors" class="text-warning">
+                            <p *ngIf="numero.errors.required">
+                                Número é obrigatório.
+                            </p>
+                        </div>
+                    </div>            
+                </div>
+                
+
+                <div class="d-flex flex-row m-3">
+                        <div class="d-flex flex-column mr-4">
+                            <label for="complemento" class="subtitulo">Complemento</label>                       
+                            <input type="text" pInputText formControlName="complemento" size="30" class="form-control form-control-lg"/>
+                            <div *ngIf="complemento.touched && complemento.errors" class="text-warning">
+                                <p *ngIf="complemento.errors.required">
+                                    Complemento é obrigatório.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column mr-4">
+                            <label for="bairro" class="subtitulo">Bairro*</label>                       
+                            <input type="text" pInputText formControlName="bairro" size="25" class="form-control form-control-lg"/>
+                            <div *ngIf="bairro.touched && bairro.errors" class="text-warning">
+                                <p *ngIf="bairro.errors.required">
+                                    Bairro é obrigatório.
+                                </p>
+                            </div>
+                        </div>
+                    </div>                
+
+                <div class="form-row m-3">
+                    <div class="d-flex flex-column mr-4">
+                        <label for="cidade" class="subtitulo">Cidade*</label>                       
+                        <input type="text" pInputText formControlName="cidade" size="25" class="form-control form-control-lg"/>
+                        <div *ngIf="cidade.touched && cidade.errors" class="text-warning">
+                            <p *ngIf="cidade.errors.required">
+                                Cidade é obrigatório.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column mr-4">
+                        <label for="estado" class="subtitulo">Estado*</label>                       
+                        <select id="estado" formControlName="estado" class="form-control form-control-lg">
+                            <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{estado.nome}}</option>
+                        </select>
+                        <div *ngIf="estado.touched && estado.errors" class="text-warning">
+                            <p *ngIf="estado.errors.required">
+                                Estado é obrigatório.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-row m-3">
+                    <div class="d-flex flex-column mr-4">
+                        <label for="telefoneEndereco" class="subtitulo">Telefone para contato*</label>                       
+                        <input type="text" pInputText formControlName="telefoneEndereco" size="15" class="form-control form-control-lg"/>
+                        <div *ngIf="telefoneEndereco.touched && telefoneEndereco.errors" class="text-warning">
+                            <p *ngIf="telefoneEndereco.errors.required">
+                                Telefone é obrigatório.
+                            </p>
+                        </div>
+                    </div>           
+
+                    <div class="d-flex flex-column mr-4">
+                        <label for="pontoReferencia" class="subtitulo">Ponto de referência*</label>                       
+                        <input type="text" pInputText formControlName="pontoReferencia" size="20" class="form-control form-control-lg"/>
+                        <div *ngIf="pontoReferencia.touched && pontoReferencia.errors" class="text-warning">
+                            <p *ngIf="pontoReferencia.errors.required">
+                                Ponto de referência é obrigatório.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row mt-3 ml-3 mb-1">
+                <label class="mesmo-endereco mb-1">Usar o mesmo endereço para entrega?:</label>                       
+                <p-inputSwitch formControlName="mesmoEnderecoEntrega" class="ml-3"></p-inputSwitch>
+            </div>
+        </form>       
+                      
+        <div class="mt-0 ml-3 mb-3">
+            <button [disabled]="!form.valid" type="button" class="btn botao-cor" (click)="save()">
+                <i class="fas fa-check-circle"></i> {{edit ? 'Atualizar' : 'Cadastrar'}}
+            </button>
+        </div>
+
+        
+
+        <h5 class="subtitulo mt-5 ml-3 mb-1">Endereço de entrega cadastrado</h5>
+        <div *ngIf="endEntrega">
+            <table class="table table-striped table-bordered ml-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">Bairro</th>
+                    <th scope="col">Cidade</th>
+                    <th scope="col">Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Rua {{endEntrega.rua}}, {{endEntrega.numero}} {{endEntrega.complemento}}</td>
+                    <td>{{endEntrega.bairro}}</td>
+                    <td>{{endEntrega.cidade}}</td>
+                    <td>{{endEntrega.estado}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div *ngIf="!endEntrega">
+            <table class="table table-striped ml-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">Bairro</th>
+                    <th scope="col">Cidade</th>
+                    <th scope="col">Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        
+    </div>
+</section>

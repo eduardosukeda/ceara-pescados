@@ -1,0 +1,128 @@
+<section class="container-fluid bg-light">
+
+    <div class="loading-indicator" *ngIf="carregarCarrinho">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+
+    <!--Visível apenas em tela xs-->
+    <div class="d-block d-sm-none">
+        <div class="row justify-content-center">
+            <div id="produtos" *ngFor="let produto of produtos; index as i" class="p-0 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="d-flex justify-content-center p-2">
+                <div class=" card card-dimensoes borda-cor-especial ">
+                    <a [routerLink]="['/produto-info', produto.id]">
+                        <img class="card-img-top card-posicao-imagem" src="data:image/jpg;base64,{{ produto.imagens[0].imagem }}" [alt]="produto.descricao">
+                    </a>
+                    <div class="card-body">
+                        <h5 routerLink="produto-info" class="card-title">{{produto.nome}}</h5>
+                        <p routerLink="produto-info" class="card-text">{{quebrarTexto(68, produto.descricao)}}</p>
+                        <h5 class="card-preco">{{produto.preco | currency: 'BRL': true}}</h5>
+                        <a href="#" class="btn botao-cor-especial"><i class="fas fa-plus"></i>&nbsp;&nbsp;<i class="fas fa-shopping-cart botao-img"></i></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Visível em telas maiores que xs-->
+    <div class="container-fluid p-0 d-none d-sm-block d-md-none ">
+        <p-carousel [value]="produtos" [numVisible]="2" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
+            <ng-template let-produto pTemplate="item">
+                <div class="p-2">                    
+                    <div class="card card-dimensoes borda-cor-especial">
+                        <a class="card-link" [routerLink]="['/produto-info', produto.id]">
+                            <img class="card-img-top card-posicao-imagem" src="data:image/jpg;base64,{{ produto.imagens[0].imagem }}" [alt]="produto.descricao">
+                        </a>                     
+                        <div class="card-body">
+                            <div class="">
+                                <h5 class="card-title container-titulo">{{produto.nome}}</h5>
+                            </div>
+                            <div class="container-texto">
+                                <p class="card-text">{{quebrarTexto(68, produto.descricao)}}</p>
+                            </div>
+                            <div class="container-preco">
+                                <h5 class="card-preco">{{produto.preco | currency: 'BRL': true}}</h5>
+                            </div>
+                            <div class="container-botao">
+                                <button type="button" class="btn botao botao-efeito" (click)="adicionarItemNoCarrinho(produto)"><i class="fas fa-shopping-cart fa-2x"></i></button>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="container-espaco">
+                        <p> </p>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+
+    <div class="container-fluid p-0 d-none d-md-block d-lg-none d-none d-lg-block d-xl-none">
+        <p-carousel [value]="produtos" [numVisible]="3" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
+            <ng-template let-produto pTemplate="item">
+                <div class="p-2">                    
+                    <div class="card card-dimensoes borda-cor-especial">
+                        <a class="card-link" [routerLink]="['/produto-info', produto.id]">
+                            <img class="card-img-top card-posicao-imagem" src="data:image/jpg;base64,{{ produto.imagens[0].imagem }}" [alt]="produto.descricao">
+                        </a>                     
+                        <div class="card-body">
+                            <div class="">
+                                <h5 class="card-title container-titulo">{{produto.nome}}</h5>
+                            </div>
+                            <div class="container-texto">
+                                <p class="card-text">{{quebrarTexto(68, produto.descricao)}}</p>
+                            </div>
+                            <div class="container-preco">
+                                <h5 class="card-preco">{{produto.preco | currency: 'BRL': true}}</h5>
+                            </div>
+                            <div class="container-botao">
+                                <button type="button" class="btn botao botao-efeito" (click)="adicionarItemNoCarrinho(produto)"><i class="fas fa-shopping-cart fa-2x"></i></button>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="container-espaco">
+                        <p> </p>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+
+    <div class="container-fluid p-0 d-none d-xl-block">
+        <p-carousel [value]="produtos" [numVisible]="5" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
+            <ng-template let-produto pTemplate="item">
+                <div class="p-2">                    
+                    <div class="card card-dimensoes borda-cor-especial">
+                        <a class="card-link" [routerLink]="['/produto-info', produto.id]">
+                            <img class="card-img-top card-posicao-imagem" src="data:image/jpg;base64,{{ produto.imagens[0].imagem }}" [alt]="produto.descricao">
+                        </a>                     
+                        <div class="card-body">
+                            <div class="">
+                                <h5 class="card-title container-titulo">{{produto.nome}}</h5>
+                            </div>
+                            <div class="container-texto">
+                                <p class="card-text">{{quebrarTexto(68, produto.descricao)}}</p>
+                            </div>
+                            <div class="container-preco">
+                                <h5 class="card-preco">{{produto.preco | currency: 'BRL': true}}</h5>
+                            </div>
+                            <div class="container-botao">
+                                <button type="button" class="btn botao botao-efeito" (click)="adicionarItemNoCarrinho(produto)"><i class="fas fa-shopping-cart fa-2x"></i></button>
+                            </div>                          
+                            
+                        </div>
+                        
+                    </div>
+                    <div class="container-espaco">
+                        <p> </p>
+                    </div>
+                    
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+
+</section>
+
+
+

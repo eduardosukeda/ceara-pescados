@@ -1,0 +1,115 @@
+<section>
+    <div class="container-fluid">                     
+        <form [formGroup]="form">
+            <div class="d-flex flex-row mt-0 ml-3 mr-3 mb-3"> 
+                <div class="d-flex flex-column mr-4">                        
+                    <label for="cep" class="subtitulo">CEP*</label>                       
+                    <input type="text" pInputText formControlName="cep" size="10" (blur)="consultaCep()" class="form-control form-control-lg"/>
+                    <div *ngIf="cep.touched && cep.errors" class="text-warning">
+                        <p *ngIf="cep.errors.required">
+                            CEP é obrigatório.
+                        </p>
+                    </div> 
+                </div>
+            </div>
+
+            <div class="d-flex flex-row m-3">
+                <div class="d-flex flex-column mr-4">
+                    <label for="rua" class="subtitulo">Rua*</label>                       
+                    <input type="text" pInputText formControlName="rua" size="30" class="form-control form-control-lg"/>
+                    <div *ngIf="rua.touched && rua.errors" class="text-warning">
+                        <p *ngIf="rua.errors.required">
+                            Rua é obrigatório.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column mr-4">
+                    <label for="numero" class="subtitulo">Número*</label>                       
+                    <input type="text" pInputText formControlName="numero" size="4" class="form-control form-control-lg"/>
+                    <div *ngIf="numero.touched && numero.errors" class="text-warning">
+                        <p *ngIf="numero.errors.required">
+                            Número é obrigatório.
+                        </p>
+                    </div>
+                </div>            
+            </div>
+               
+
+            <div class="d-flex flex-row m-3">
+                    <div class="d-flex flex-column mr-4">
+                        <label for="complemento" class="subtitulo">Complemento</label>                       
+                        <input type="text" pInputText formControlName="complemento" size="30" class="form-control form-control-lg"/>
+                        <div *ngIf="complemento.touched && complemento.errors" class="text-warning">
+                            <p *ngIf="complemento.errors.required">
+                                Complemento é obrigatório.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column mr-4">
+                        <label for="bairro" class="subtitulo">Bairro*</label>                       
+                        <input type="text" pInputText formControlName="bairro" size="25" class="form-control form-control-lg"/>
+                        <div *ngIf="bairro.touched && bairro.errors" class="text-warning">
+                            <p *ngIf="bairro.errors.required">
+                                Bairro é obrigatório.
+                            </p>
+                        </div>
+                    </div>
+                </div>                
+
+            <div class="form-row m-3">
+                <div class="d-flex flex-column mr-4">
+                    <label for="cidade" class="subtitulo">Cidade*</label>                       
+                    <input type="text" pInputText formControlName="cidade" size="25" class="form-control form-control-lg"/>
+                    <div *ngIf="cidade.touched && cidade.errors" class="text-warning">
+                        <p *ngIf="cidade.errors.required">
+                            Cidade é obrigatório.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column mr-4">
+                    <label for="estado" class="subtitulo">Estado*</label>                       
+                    <select id="estado" formControlName="estado" class="form-control form-control-lg">
+                        <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{estado.nome}}</option>
+                    </select>
+                    <div *ngIf="estado.touched && estado.errors" class="text-warning">
+                        <p *ngIf="estado.errors.required">
+                            Estado é obrigatório.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row m-3">
+                <div class="d-flex flex-column mr-4">
+                    <label for="telefoneEndereco" class="subtitulo">Telefone para contato*</label>                       
+                    <input type="text" pInputText formControlName="telefoneEndereco" size="15" class="form-control form-control-lg"/>
+                    <div *ngIf="telefoneEndereco.touched && telefoneEndereco.errors" class="text-warning">
+                        <p *ngIf="telefoneEndereco.errors.required">
+                            Telefone é obrigatório.
+                        </p>
+                    </div>
+                </div>           
+
+                <div class="d-flex flex-column mr-4">
+                    <label for="pontoReferencia" class="subtitulo">Ponto de referência*</label>                       
+                    <input type="text" pInputText formControlName="pontoReferencia" size="20" class="form-control form-control-lg"/>
+                    <div *ngIf="pontoReferencia.touched && pontoReferencia.errors" class="text-warning">
+                        <p *ngIf="pontoReferencia.errors.required">
+                            Ponto de referência é obrigatório.
+                        </p>
+                    </div>
+                </div>
+            </div>    
+        </form>
+                      
+        <div class="m-3">
+            <button [disabled]="!form.valid" type="button" class="btn botao-cor" (click)="save()">
+                <i class="fas fa-check-circle"></i> {{edit ? 'Atualizar' : 'Cadastrar'}}
+            </button>
+        </div>
+
+    </div>
+</section>

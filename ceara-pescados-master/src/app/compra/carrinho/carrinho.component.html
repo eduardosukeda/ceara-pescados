@@ -1,0 +1,100 @@
+<section>
+    <div *ngIf="itens; else vazio">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 titulo">
+                    <p class="">Meu carrinho</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 pt-3 pb-3 border-bottom">
+                    <table class="table">
+                        <tbody>
+                            <tr *ngFor="let item of itens">
+                                <td class="text-center">
+                                    <img src="data:image/jpg;base64,{{ item.produto.imagens[0].imagem }}" style="width: 100px" class="img-fluid">
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="produto-nome">{{item.produto.nome}}</div>
+                                        <div>Preço/Kg: {{item.produto.preco | currency: 'BRL': true}}</div>                                
+                                    </div>
+                                </td>
+
+                                <td>                                    
+                                    <div class="btn-group" role="group" aria-label="Primeiro grupo" >
+                                        <button type="button" class="btn btn-grupo mt-3 ml-1">P</button>
+                                        <button type="button" class="btn btn-grupo mt-3 ml-1">M</button>
+                                        <button type="button" class="btn btn-grupo mt-3 ml-1">G</button>
+                                    </div>                                    
+                                </td>
+
+                                <td>                                    
+                                    <div class="btn-group" role="group" aria-label="Primeiro grupo" data-toggle="button">
+                                        <button type="button" class="btn btn-grupo mt-3 ml-1">P</button>
+                                        <button type="button" class="btn btn-grupo mt-3 ml-1">M</button>
+                                        <button type="button" class="btn btn-grupo mt-3 ml-1">G</button>
+                                    </div>                                    
+                                </td>
+
+                                <td class="text-center">
+                                    <div class="d-flex flex-column">
+                                        <div>
+                                            <button type="button" (click)="menosPeso(item)" class="btn botao-mais-menos">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <input type="text" class='product-quantity' [value]="item?.quantidade | maskPeso" size="7" readonly="true" style="text-align:center;">
+                                            <button type="button" (click)="maisPeso(item)" class="btn botao-mais-menos">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="pt-3 pb-3">Preço total do item: <span class="preco">{{atualizarPreco(item) | currency: 'BRL': true}}</span></div>                                
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <button type="button" (click)="excluirItem(item)" class="btn botao-excluir">
+                                        <i class="fas fa-times m-4"></i>
+                                    </button>
+                                </td>
+
+                            </tr>
+                            <tr></tr>
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-12">
+                    <div class="d-flex flex-column ">
+                        <div class="d-flex justify-content-center">
+                            <div style="font-size: x-large; font-weight: bold;" class="m-3"> TOTAL:&nbsp;&nbsp;<span class="pt-2 preco">{{valorTotal() | currency: 'BRL': true}}</span></div>
+                            <button pButton type="button" label="Finalizar" (click)="finalizarCompra()" class="botao-cor m-3 pl-3 pr-3">
+                                
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <ng-template #vazio>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 titulo">
+                    <p class="">Meu carrinho</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 pt-3 pb-3">
+                    <p>Carrinho vazio!</p>
+                </div>
+            </div>
+        </div>
+
+    </ng-template>
+</section>

@@ -1,0 +1,92 @@
+.titulo {
+    background-color: rgb(180, 69, 0);
+    text-align: center;
+    color: white;
+    font-family: 'Open Sans,sans-serif';
+    letter-spacing: 2px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    text-transform: uppercase;
+  }
+  
+  .titulo h2 {
+    font-weight: 700;
+  }
+  
+  .titulo p {
+    font-weight: 400;
+    font-size: x-large;
+    margin: 0px;
+  }
+  
+    .produto-nome {
+      color: rgb(180, 69, 0);
+      font-size: x-large;
+      font-weight: bold;
+    }
+  
+    .botao-mais-menos {
+      background-color: rgb(180, 69, 0);
+      color: white;
+      border-radius: 0;
+      
+      padding-top: 0px;
+      padding-bottom: 0px;
+      padding-left: 5px;
+      padding-right: 5px;
+      margin: 8px;
+      
+    }
+    
+    .product-quantity {
+      height: 50px;
+    }
+  
+  .caixa-peso {
+    border-color: rgb(180, 69, 0);
+  }
+  
+  .botao-cor {
+    background-color: rgb(180, 69, 0);
+    color: white;  
+  }
+  
+  .preco {
+    font-family: 'dosis_bold',sans-serif;
+    color: rgb(180, 69, 0);
+    font-size: 24px;
+    text-transform: uppercase;
+    line-height: 30px;
+    font-weight: 700;
+  }
+  
+  
+  .btn-grupo {
+    background-color: transparent;
+    border: solid 1px;
+    border-color: grey;
+  }
+  
+  .btn-grupo:hover {
+    background-color: rgb(180, 69, 0, 0.2);
+  }
+  
+  .btn-grupo:active {
+    background-color: rgb(180, 69, 0, 0.8);
+  }
+  
+  
+  
+  .medida {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .botao-excluir {
+    background-color: transparent;
+    color: rgb(180, 69, 0);
+    font-size: 24px;
+  }
